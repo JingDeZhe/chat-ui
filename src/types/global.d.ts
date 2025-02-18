@@ -1,4 +1,5 @@
 type ChatMessage = {
   type: string
-  data: Record<string, any>
+  role?: 'user' | 'system'
+  content: string
 }

@@ -6,9 +6,17 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="message-renderer">
-    <component :is="messageNodeMap[info.type]" :data="info.data"></component>
+  <div class="message-renderer" :class="[`role-${info.role || 'system'}`]">
+    <component :is="messageNodeMap[info.type]" :data="info"></component>
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.message-renderer {
+  --at-apply: mx-1;
+  &.role-user {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+</style>

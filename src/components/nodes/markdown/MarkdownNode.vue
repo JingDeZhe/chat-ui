@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Shiki from '@shikijs/markdown-it'
-import MermaidPlugin from './plugins/mermaid'
+// import MermaidPlugin from './plugins/mermaid'
 import markdownit from 'markdown-it'
 import { ref, watch } from 'vue'
 const md = markdownit()
@@ -15,7 +15,7 @@ let isPluginLoaded = false
 const renderMarkdown = async (text: string) => {
   if (!isPluginLoaded) {
     console.log('加载Shiki插件')
-    md.use(MermaidPlugin)
+    // md.use(MermaidPlugin)
     md.use(
       await Shiki({
         defaultColor: 'dark',
@@ -48,7 +48,29 @@ watch(
 </template>
 
 <style lang="scss">
-.shiki {
-  --at-apply: p-2 rounded overflow-auto;
+.markdown-node {
+  .shiki {
+    --at-apply: p-2 rounded overflow-auto;
+  }
+
+  img {
+    --at-apply: max-w-full;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  }
 }
 </style>
