@@ -11,7 +11,7 @@ export const markdownModule: MessageModule = {
       icon: 'i-tabler-copy',
       handle(message) {
         copyTextToClipboard(message.content)
-        ElMessage.success('已复制')
+        ElMessage.success('已复制Markdown内容')
       },
     },
   ],

@@ -32,7 +32,7 @@ function handleDelete() {
       <component :is="activeModule.node" :data="msg"></component>
     </div>
     <div class="tools">
-      <i class="i-tabler-trash" @click="handleDelete" title="删除"></i>
+      <i class="i-tabler-trash hover:bg-red!" @click="handleDelete" title="删除"></i>
       <i v-for="d in activeModule.menus" :class="d.icon" @click="handleMenuClick(d)" :title="d.title"></i>
     </div>
   </div>

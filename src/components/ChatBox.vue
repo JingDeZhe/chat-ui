@@ -2,6 +2,7 @@
 import { nextTick, ref } from 'vue'
 import MessageRenderer from './MessageRenderer.vue'
 import { testMessages } from '../mocks/test-messages'
+import { ElMessage } from 'element-plus'
 
 const messages = ref<ChatMessage[]>(testMessages)
 const userInput = ref('')
@@ -13,6 +14,12 @@ function insertMessage(msg: ChatMessage) {
 }
 
 function handleSend() {
+  const value = userInput.value.trim()
+  if (!value) {
+    ElMessage.info('不能发送空内容')
+    userInput.value = ''
+    return
+  }
   insertMessage({
     type: 'text',
     role: 'user',
@@ -21,8 +28,8 @@ function handleSend() {
   userInput.value = ''
 }
 
-function handleEnter(e: MouseEvent) {
-  if (e.shiftKey) {
+function handleEnter(e: KeyboardEvent | Event) {
+  if ((e as KeyboardEvent).shiftKey) {
   } else {
     handleSend()
     e.preventDefault()
@@ -51,7 +58,7 @@ function handleDelete(i: number) {
     <div class="message-input">
       <div class="header-tools"></div>
       <div class="input">
-        <el-input type="textarea" v-model="userInput" @keyup.enter="handleEnter"></el-input>
+        <el-input type="textarea" v-model="userInput" resize="none" :rows="3" @keydown.enter="handleEnter"></el-input>
       </div>
       <div class="flex justify-end">
         <el-button type="primary" @click="handleSend">发送</el-button>
