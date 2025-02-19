@@ -8,9 +8,10 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   delete: []
+  contentLoaded: []
 }>()
 
-const activeModule = computed(() => messageModuleMap[props.msg.type])
+const activeModule = computed(() => messageModuleMap[props.msg.type || 'markdown'])
 const refContent = ref<HTMLElement>()
 
 function handleMenuClick(menuItem: MessageMenuItem) {
@@ -29,7 +30,7 @@ function handleDelete() {
 <template>
   <div class="message-renderer" :class="[`role-${msg.role || 'system'}`]">
     <div class="content" ref="refContent">
-      <component :is="activeModule.node" :data="msg"></component>
+      <component :is="activeModule.node" :data="msg" @contentLoaded="emit('contentLoaded')"></component>
     </div>
     <div class="tools">
       <i class="i-tabler-trash hover:bg-red!" @click="handleDelete" title="删除"></i>

@@ -12,6 +12,7 @@
     "canvg": "^4.0.2",
     "element-plus": "^2.9.4",
     "file-saver": "^2.0.5",
+    "ky": "^1.7.5",
     "markdown-it": "^14.1.0",
     "markdown-it-async": "^2.0.0",
     "mermaid": "^11.4.1",

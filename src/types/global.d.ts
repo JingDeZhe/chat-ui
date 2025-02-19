@@ -1,5 +1,5 @@
 type ChatMessage = {
-  type: string
+  type?: string
   role?: 'user' | 'system'
   content: string
 }

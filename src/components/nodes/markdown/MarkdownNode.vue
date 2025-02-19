@@ -10,6 +10,9 @@ const props = defineProps<{
 }>()
 
 const htmlText = ref('')
+const emit = defineEmits<{
+  contentLoaded: []
+}>()
 
 let isPluginLoaded = false
 const renderMarkdown = async (text: string) => {
@@ -23,12 +26,13 @@ const renderMarkdown = async (text: string) => {
           light: 'vitesse-light',
           dark: 'one-dark-pro',
         },
-        langs: ['javascript', 'typescript', 'sql', 'java', 'html', 'vue', 'mermaid'],
+        langs: ['javascript', 'typescript', 'sql', 'java', 'html', 'vue', 'mermaid', 'markdown'],
       })
     )
     isPluginLoaded = true
   }
   htmlText.value = md.render(text)
+  emit('contentLoaded')
 }
 
 watch(

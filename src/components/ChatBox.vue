@@ -3,10 +3,13 @@ import { nextTick, ref } from 'vue'
 import MessageRenderer from './MessageRenderer.vue'
 import { testMessages } from '../mocks/test-messages'
 import { ElMessage } from 'element-plus'
+import { chatWithAi } from '../utils'
+import LoadingPlaceholder from './LoadingPlaceholder.vue'
 
 const messages = ref<ChatMessage[]>(testMessages)
 const userInput = ref('')
 const refScroll = ref<any>(null)
+const waiting = ref(false)
 
 function insertMessage(msg: ChatMessage) {
   messages.value.push(msg)
@@ -25,6 +28,17 @@ function handleSend() {
     role: 'user',
     content: userInput.value,
   })
+  waiting.value = true
+  chatWithAi(messages.value.slice(-3))
+    .then((d) => {
+      insertMessage(d)
+    })
+    .catch((err) => {
+      ElMessage.error(err)
+    })
+    .finally(() => {
+      waiting.value = false
+    })
   userInput.value = ''
 }
 
@@ -52,7 +66,18 @@ function handleDelete(i: number) {
   <div class="chat-box">
     <div class="message-list">
       <el-scrollbar height="100%" ref="refScroll">
-        <MessageRenderer v-for="(d, i) in messages" :msg="d" @delete="handleDelete(i)"></MessageRenderer>
+        <MessageRenderer
+          v-for="(d, i) in messages"
+          :msg="d"
+          @delete="handleDelete(i)"
+          @content-loaded="scrollToBottom"
+        ></MessageRenderer>
+        <div v-if="waiting" class="text-gray flex items-center gap-1 m-2">
+          <span>思考中</span>
+          <el-icon size="16">
+            <LoadingPlaceholder></LoadingPlaceholder>
+          </el-icon>
+        </div>
       </el-scrollbar>
     </div>
     <div class="message-input">

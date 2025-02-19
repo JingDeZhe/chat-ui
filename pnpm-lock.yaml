@@ -17,6 +17,9 @@ importers:
       file-saver:
         specifier: ^2.0.5
         version: 2.0.5
+      ky:
+        specifier: ^1.7.5
+        version: 1.7.5
       markdown-it:
         specifier: ^14.1.0
         version: 14.1.0
@@ -1257,6 +1260,10 @@ packages:
 
   kolorist@1.8.0:
     resolution: {integrity: sha512-Y+60/zizpJ3HRH8DCss+q95yr6145JXZo46OTpFvDZWLfRCE4qChOyk1b26nMaNpfHHgxagk9dXT5OP0Tfe+dQ==}
+
+  ky@1.7.5:
+    resolution: {integrity: sha512-HzhziW6sc5m0pwi5M196+7cEBtbt0lCYi67wNsiwMUmz833wloE0gbzJPWKs1gliFKQb34huItDQX97LyOdPdA==}
+    engines: {node: '>=18'}
 
   langium@3.0.0:
     resolution: {integrity: sha512-+Ez9EoiByeoTu/2BXmEaZ06iPNXM6thWJp02KfBO/raSMyCJ4jw7AkWWa+zBCTm0+Tw1Fj9FOxdqSskyN5nAwg==}
@@ -2887,6 +2894,8 @@ snapshots:
   khroma@2.1.0: {}
 
   kolorist@1.8.0: {}
+
+  ky@1.7.5: {}
 
   langium@3.0.0:
     dependencies:
