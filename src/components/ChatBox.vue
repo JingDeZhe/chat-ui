@@ -35,13 +35,17 @@ function scrollToBottom() {
     refScroll.value.setScrollTop(scrollView.scrollHeight)
   })
 }
+
+function handleDelete(i: number) {
+  messages.value.splice(i, 1)
+}
 </script>
 
 <template>
   <div class="chat-box">
     <div class="message-list">
       <el-scrollbar height="100%" ref="refScroll">
-        <MessageRenderer v-for="d in messages" :info="d"></MessageRenderer>
+        <MessageRenderer v-for="(d, i) in messages" :msg="d" @delete="handleDelete(i)"></MessageRenderer>
       </el-scrollbar>
     </div>
     <div class="message-input">

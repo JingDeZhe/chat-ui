@@ -1,10 +1,9 @@
-import type { Component } from 'vue'
-import MarkdownNode from './markdown/MarkdownNode.vue'
-import TextNode from './TextNode.vue'
-import MermaidNode from './mermaid/MermaidNode.vue'
+import { markdownModule } from './markdown'
+import { textModule } from './text'
+import { mermaidModule } from './mermaid'
 
-export const messageNodeMap: Record<string, Component> = {
-  markdown: MarkdownNode,
-  text: TextNode,
-  mermaid: MermaidNode,
+export const messageModuleMap: Record<string, MessageModule> = {
+  text: textModule,
+  markdown: markdownModule,
+  mermaid: mermaidModule,
 }

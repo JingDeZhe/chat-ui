@@ -18,5 +18,5 @@ export default defineConfig({
 })
 
 function getSafeList() {
-  return []
+  return ['i-tabler-photo-down', 'i-tabler-printer', 'i-tabler-copy']
 }

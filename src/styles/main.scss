@@ -1,4 +1,6 @@
-html, body, #app {
+html,
+body,
+#app {
   --at-apply: m-0 p-0;
 }
 
@@ -8,7 +10,26 @@ html, body, #app {
     --at-apply: flex-1 overflow-hidden;
   }
   .message-renderer {
-    --at-apply: p-2 mb-1;
+    --at-apply: p-2 mb-1 mx-1;
+    > .tools {
+      --at-apply: m-1 flex gap-1 text-gray opacity-0;
+      > i {
+        --at-apply: cursor-pointer;
+        &:hover {
+          --at-apply: bg-gray-500;
+        }
+      }
+    }
+    &:hover > .tools {
+      --at-apply: opacity-100;
+    }
+    &.role-user {
+      > .content,
+      > .tools {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
   }
   .message-input {
     --at-apply: flex flex-col gap-1;
